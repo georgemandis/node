@@ -91,6 +91,14 @@ void DateCache::YearMonthDayFromDays(int days, int* year, int* month,
       *year = ymd_year_;
       *month = ymd_month_;
       *day = new_day;
+
+
+    // Check if the date is in October 1582 and falls within the range of October 5-14
+    if (*year == 1582 && *month == 9 && *day >= 5 && *day <= 14) {
+      // Set the date to October 15, 1582
+      *day = 15;
+    }
+       
       return;
     }
   }
